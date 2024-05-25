@@ -2,3 +2,12 @@ name = "PianoHands"
 uuid = "74435128-bd9d-4d82-978b-bd768beb391e"
 authors = ["NeroBlackstone <gf7600gs@gmail.com>"]
 version = "0.1.0"
+
+[deps]
+MIDI = "f57c4921-e30c-5f49-b073-3f2f2ada663e"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
