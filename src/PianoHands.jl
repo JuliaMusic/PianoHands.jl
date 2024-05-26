@@ -1,9 +1,10 @@
 module PianoHands
 
-using MIDI
+using MIDI,IterTools,Flux
 
 include("./PIG.jl")
 
 greet() = print("Hello World!")
+
 
 end # module PianoHands
