@@ -29,7 +29,36 @@ function pig_to_features(file_path::String)::Tuple{Vector{Tuple},Vector{Int}}
     return features,labels
 end
 
-function get_data(features::Vector{Tuple},labels::Vector{Int};seq_length = 20, batch_size = 10)
+"""
+    midi_to_features(file_path::String)::Vector{Tuple}
+
+Get features (pitch, time_shift, duration) from MIDI file.
+"""
+function midi_to_features(file_path::String)::Vector{Tuple}
+    midifile = load(file_path)
+    notes = Notes()
+    for t in midifile.tracks
+        notes = getnotes(t)
+        if !isempty(notes)
+            break
+        end
+    end
+    pre = 0
+    result = Vector{Tuple}()
+    for n in notes
+        onset_time = metric_time(midifile,n)
+        push!(result,(Int(n.pitch), Float32(onset_time - pre), Float32(duration_metric_time(midifile,n))))
+        pre = onset_time
+    end
+    return result
+end
+
+"""
+    get_train_data(features::Vector{Tuple},labels::Vector{Int};seq_length = 20, batch_size = 10)
+
+Get train data vector.
+"""
+function get_train_data(features::Vector{Tuple},labels::Vector{Int};seq_length = 20, batch_size = 10)
     data_features = Flux.chunk(collect.(partition(collect.(features),seq_length,1)); size = batch_size)
     data_features = [permutedims(d,(2,1,3)) for d in stack.([stack.(d) for d in data_features])]
     
