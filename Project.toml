@@ -21,3 +21,14 @@ Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [targets]
 test = ["Test"]
+
+[compat]
+CodecZlib = "0.7"
+IterTools = "0.10"
+JLD2 = "0.4"
+Lux = "0.5"
+LuxCUDA = "0.3"
+MIDI = "2.7"
+MLUtils = "0.4"
+Optimisers = "0.3"
+Zygote = "0.6"
