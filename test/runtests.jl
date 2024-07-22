@@ -1,11 +1,14 @@
-using Test,PianoHands,MIDI
+using Test,PianoHands,MIDI,Lux,Random,Printf,LuxCUDA,Optimisers,Zygote,JLD2
 
 @testset "pig to feature" begin
-    # feature, label = PianoHands.pig_to_features("../PianoFingeringDataset/dataset/001-1_fingering.txt")
-    # feature, label = PianoHands.get_train_data(feature,labelo,midifile.tpq))
-    # @show size(feature[1])
-    # @show size(label[1])
-    # PianoHands.midi_to_features("../PianoFingeringDataset/alb_esp1.mid")
+    # train_piano("../PianoFingeringDataset/dataset/",
+    # "../PianoFingeringDataset/testset/";
+    # SEQ_LENGTH=70,
+    # BATCH_SIZE=10,
+    # LEARNING_RATE = 0.0005f0,
+    # HIDDEN_SIZE = 14,
+    # EVALUATE_PER_N_TRAIN = 100
+    # )
 
-    # @show PianoHands.midi_to_features("../PianoFingeringDataset/alb_esp1.mid")
+    # generate_midi("./ymsn_full.mid";weight_file="./14trained_model-0.92757.jld2",HIDDEN_SIZE=14)
 end
