@@ -1,7 +1,7 @@
 name = "PianoHands"
 uuid = "74435128-bd9d-4d82-978b-bd768beb391e"
 authors = ["NeroBlackstone <gf7600gs@gmail.com>"]
-version = "0.1.0"
+version = "0.2.0"
 
 [deps]
 CodecZlib = "944b1d66-785c-5afd-91f1-9de20f533193"
@@ -26,7 +26,7 @@ test = ["Test"]
 CodecZlib = "0.7"
 IterTools = "1.10"
 JLD2 = "0.4"
-Lux = "0.5"
+Lux = "1.0"
 LuxCUDA = "0.3"
 MIDI = "2.7"
 MLUtils = "0.4"

@@ -69,7 +69,8 @@ function get_train_dataloaders(dataset_path::String; batch_size=10, seq_length=2
         push!(feature_result,stack(stack.(partition(features,seq_length,1))))
         push!(label_result,stack(stack.(partition(labels,seq_length,1))))
     end
-    return DataLoader((cat(feature_result...;dims=3),cat(label_result...;dims=2)); batchsize = batch_size, shuffle=true, parallel = true)
+    return DataLoader((cat(feature_result...;dims=3),cat(label_result...;dims=2));
+        batchsize = batch_size, shuffle=true, parallel = true)
 end
 
 """
@@ -96,7 +97,9 @@ Predict left hand or right hand by output.
 """
 predict_y(y) = y > 0.5f0 ? 1 : 0
 
-function generate_midi(input_file::String;output_file="./out.mid",weight_file=pkgdir(PianoHands,"weight","weight-0.92757.jld2"),HIDDEN_SIZE=14)
+function generate_midi(input_file::String; output_file::String="",
+    weight_file=pkgdir(PianoHands,"model","model-0.91502.jld2"),HIDDEN_SIZE=14)
+    
     midi_file = load(input_file)
     hand_classify = inferance_midi(midi_file,weight_file,HIDDEN_SIZE)
     
@@ -115,5 +118,5 @@ function generate_midi(input_file::String;output_file="./out.mid",weight_file=pk
     addnotes!(track_rh, notes_rh)
     addtrackname!(track_rh, "piano right")
     push!(new_midi_file.tracks, track_lh, track_rh)
-    save(output_file, new_midi_file)
+    save(isempty(output_file) ? first(splitext(input_file))*"_out.mid" : output_file, new_midi_file)
 end
