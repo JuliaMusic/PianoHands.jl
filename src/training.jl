@@ -8,7 +8,7 @@ end
 function train_piano(DATASET_PATH,
     TESTSET_PATH;
     BATCH_SIZE = 12,
-    SEQ_LENGTH = 75,
+    SEQ_LENGTH = 65,
     HIDDEN_SIZE = 14,
     LEARNING_RATE = 0.0005f0,
     MAX_EPOCH = 200,

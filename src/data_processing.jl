@@ -98,7 +98,7 @@ Predict left hand or right hand by output.
 predict_y(y) = y > 0.5f0 ? 1 : 0
 
 function generate_midi(input_file::String; output_file::String="",
-    weight_file=pkgdir(PianoHands,"model","model-0.91502.jld2"),HIDDEN_SIZE=14)
+    weight_file=pkgdir(PianoHands,"model","model-0.92091.jld2"),HIDDEN_SIZE=14)
     
     midi_file = load(input_file)
     hand_classify = inferance_midi(midi_file,weight_file,HIDDEN_SIZE)
